@@ -1,10 +1,7 @@
 package guru.springframework.sfgdi;
 
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
-import guru.springframework.sfgdi.controllers.ConstructorInjectedController;
-import guru.springframework.sfgdi.controllers.MyController;
-import guru.springframework.sfgdi.controllers.PropertyInjectedController;
-import guru.springframework.sfgdi.controllers.SetterInjectedController;
+import guru.springframework.sfgdi.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -15,9 +12,17 @@ public class SfgDiApplication
 	public static void main(String[] args)
 	{
 		ApplicationContext ctx = SpringApplication.run(SfgDiApplication.class, args);
+
+		PetController petController = ctx.getBean("petController", PetController.class);
+		System.out.println("--- The Best Pet is ---");
+		System.out.println(petController.whichPetIsTheBest());
+
+		InternationalisationController internationalisationController = (InternationalisationController) ctx.getBean("internationalisationController");
+		System.out.println(internationalisationController.sayHello());
+
+		System.out.println("---- Primary Bean ----");
 		MyController myController = (MyController) ctx.getBean("myController");
-		String greeting = myController.sayHello();
-		System.out.println(greeting);
+		System.out.println(myController.sayHello());
 
 		System.out.println("---- Property Injected ----");
 		PropertyInjectedController propertyInjectedController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
