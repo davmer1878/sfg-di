@@ -1,7 +1,7 @@
 package guru.springframework.sfgdi.config;
 
-import guru.springframework.sfgdi.service.CatPetService;
-import guru.springframework.sfgdi.service.DogPetService;
+import guru.springframework.sfgdi.service.PetService;
+import guru.springframework.sfgdi.service.PetServiceFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -9,17 +9,23 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 public class PetServiceConfig
 {
+    @Bean
+    PetServiceFactory petServiceFactory()
+    {
+        return new PetServiceFactory();
+    }
+
     @Profile("cat")
     @Bean
-    CatPetService catPetService()
+    PetService catPetService(PetServiceFactory petServiceFactory)
     {
-        return new CatPetService();
+        return petServiceFactory.getPetService("cat");
     }
 
     @Profile({"dog", "default"})
     @Bean
-    DogPetService dogPetService()
+    PetService dogPetService(PetServiceFactory petServiceFactory)
     {
-        return new DogPetService();
+        return petServiceFactory.getPetService("dog");
     }
 }

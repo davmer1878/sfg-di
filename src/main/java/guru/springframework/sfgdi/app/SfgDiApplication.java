@@ -7,8 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-// Don't need to include .service in the scan below as all defined within config
-@ComponentScan(basePackages = {"guru.springframework.sfgdi.config", "guru.springframework.sfgdi.controller"})
+@ComponentScan(basePackages = {"guru.springframework.sfgdi.config", "guru.springframework.sfgdi.controller", "guru.springframework.sfgdi.service"})
 public class SfgDiApplication
 {
 	public static void main(String[] args)
@@ -16,11 +15,12 @@ public class SfgDiApplication
 		ApplicationContext ctx = SpringApplication.run(SfgDiApplication.class, args);
 
 		PetController petController = ctx.getBean("petController", PetController.class);
-		System.out.println("--- The Best Pet is ---");
+		System.out.println("---- The Best Pet is ----");
 		System.out.println(petController.whichPetIsTheBest());
 
-		InternationalisationController internationalisationController = (InternationalisationController) ctx.getBean("internationalisationController");
-		System.out.println(internationalisationController.sayHello());
+		System.out.println("---- Language Greeting ----");
+		LanguageController languageController = (LanguageController) ctx.getBean("languageController");
+		System.out.println(languageController.sayHello());
 
 		System.out.println("---- Primary Bean ----");
 		MyController myController = (MyController) ctx.getBean("myController");
