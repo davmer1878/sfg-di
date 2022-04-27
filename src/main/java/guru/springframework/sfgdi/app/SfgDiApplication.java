@@ -7,7 +7,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"guru.springframework.sfgdi.config", "guru.springframework.sfgdi.controller", "guru.springframework.sfgdi.service"})
+// Don't need to include .service in the scan below as all defined within config
+@ComponentScan(basePackages = {"guru.springframework.sfgdi.config", "guru.springframework.sfgdi.controller"})
 public class SfgDiApplication
 {
 	public static void main(String[] args)
