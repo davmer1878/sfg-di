@@ -1,12 +1,13 @@
-package guru.springframework.sfgdi;
+package guru.springframework.sfgdi.app;
 
-import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
-import guru.springframework.sfgdi.controllers.*;
+import guru.springframework.sfgdi.controller.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan(basePackages = {"guru.springframework.sfgdi.config", "guru.springframework.sfgdi.controller", "guru.springframework.sfgdi.service"})
 public class SfgDiApplication
 {
 	public static void main(String[] args)

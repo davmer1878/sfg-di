@@ -1,6 +1,6 @@
-package guru.springframework.sfgdi.controllers;
+package guru.springframework.sfgdi.controller;
 
-import guru.springframework.sfgdi.services.PetService;
+import guru.springframework.sfgdi.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
